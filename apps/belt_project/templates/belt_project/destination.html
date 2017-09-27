@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>destination</title>
+</head>
+<body>
+  <a href="/travel">Home</a>
+  <a href="/">Logout</a>
+  {% if othertrip %}
+    <h3>{{othertrip.destination}}</h3>
+    <p>Planed by: {{builder.first_name}}</p>
+    <p>Travel Date From: {{othertrip.travel_date_from}}</p>
+    <p>Travel Date to: {{othertrip.travel_date_to}}</p>
+  {% endif %}
+  
+  <h4>Other users' joining the trip</h4>
+  {% if joiners %}
+    {% for joiner in joiners %}
+      {{joiner.first_name}} {{joiner.last_name}}
+    {% endfor %}
+  {% endif %}
+
+
+</body>
+</html>

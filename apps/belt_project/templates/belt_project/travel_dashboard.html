@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>travel dashboard</title>
+</head>
+<body>
+  <h2>Hello, {{users.first_name}}</h2>
+  <form action="/">
+    <input type="submit" value="Logout">
+  </form>
+  <h4>Your Trip Schedules</h4>
+  <table border="1">
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start date</th>
+      <th>travel end date</th>
+      <th>plan</th>
+    </tr>
+    {% if trips %}
+      {% for trip in trips %}
+        <tr>
+          <td><a href="destination/{{users.trips.id}}">{{trips.destination}}</a></td>
+          <td>{{trips.travel_date_from}}</td>
+          <td>{{trips.travel_date_to}}</td>
+          <td>{{trips.description}}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </table>
+  
+  <h4>Other User's travel plans</h4>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Destination</th>
+      <th>Travel Start date</th>
+      <th>travel end date</th>
+      <th>Do you want to join?</th>
+    </tr>
+    {% if others %}
+      {% for other in others %}
+        <tr>
+          <td>{{others.first_name}}</td>
+          <td><a href="/destination/{{others.trips.id}}"></a>{{others.trips.destination}}</td>
+          <td>{{others.trips.travel_date_from}}</td>
+          <td>{{others.trips.travel_date_to}}</td>
+          <td><a href="/join/{{user.id}}">Join</a></td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </table>
+
+  <form action="travel/add">
+    {% csrf_token %}
+    <input type="submit" value="Add Travel Plan">
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
